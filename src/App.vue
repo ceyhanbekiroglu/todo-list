@@ -22,6 +22,13 @@ const addTodo = () => {
 		return
 	}
 
+	todos.value.push({
+		id: Math.random(),
+		content: input_content.value,
+		category: input_category.value,
+		createdAt: Date.now()
+	})
+
 }
 
 watch(name, (newVal) => {
