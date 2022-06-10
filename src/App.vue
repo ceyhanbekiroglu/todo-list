@@ -26,10 +26,15 @@ const addTodo = () => {
 		id: Math.random(),
 		content: input_content.value,
 		category: input_category.value,
-		createdAt: Date.now()
+		done: false,
+		createdAt: new Date().getTime()
 	})
 
 }
+
+watch(todos, (newVal) => {
+	localStorage.setItem('todos', JSON.stringify(newVal))
+}, { deep: true })
 
 watch(name, (newVal) => {
 	localStorage.setItem('name', newVal)
