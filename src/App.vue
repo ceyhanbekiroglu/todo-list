@@ -17,7 +17,12 @@ const todos_asc = computed(() =>
 	})
 )
 
-const addTodo = () => {}
+const addTodo = () => {
+	if (input_content.value.trim() === '' || input_category.value === null) {
+		return
+	}
+
+}
 
 watch(name, (newVal) => {
 	localStorage.setItem('name', newVal)
@@ -44,24 +49,13 @@ onMounted(() => {
 			<h4>Pick a category</h4>
 			<div class="options">
 				<label>
-					<input
-						type="radio"
-						name="category"
-						id="category1"
-						value="business"
-						v-model="input_category"
-					/>
+					<input type="radio" name="category" id="category1" value="business" v-model="input_category" />
 					<span class="bubble business"></span>
 					<div>Business</div>
 				</label>
 
 				<label>
-					<input
-						type="radio"
-						name="category"
-						value="personal"
-						v-model="input_category"
-					/>
+					<input type="radio" name="category" value="personal" v-model="input_category" />
 					<span class="bubble personal"></span>
 					<div>Personal</div>
 				</label>
