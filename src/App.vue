@@ -79,15 +79,19 @@ onMounted(() => {
 		<section class="todo-list">
 			<h3>TODO LIST</h3>
 			<div class="list">
-				<div v-bind="todo in todos_asc" :class="`todo-item ${todo.done && 'done'}`">
+				<div v-for="todo in todos_asc" :class="`todo-item ${todo.done && 'done'}`">
 
 
 					<label>
 						<input type="checkbox" v-model="todo.done" />
 						<span :class="`bubble ${todo.category == 'business' ? 'business' : 'personal'}`"></span>
-
 					</label>
-
+					<div class="todo-content">
+						<input type="text" v-model="todo.content">
+					</div>
+					<div class="actions">
+						<button class="delete" @click="removeTodo(todos)">Delete</button>
+					</div>
 
 				</div>
 			</div>
