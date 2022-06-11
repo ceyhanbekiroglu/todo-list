@@ -76,5 +76,21 @@ onMounted(() => {
 
 			<input type="submit" value="Add todo" />
 		</section>
+		<section class="todo-list">
+			<h3>TODO LIST</h3>
+			<div class="list">
+				<div v-bind="todo in todos_asc" :class="`todo-item ${todo.done && 'done'}`">
+
+
+					<label>
+						<input type="checkbox" v-model="todo.done" />
+						<span :class="`bubble ${todo.category == 'business' ? 'business' : 'personal'}`"></span>
+
+					</label>
+
+
+				</div>
+			</div>
+		</section>
 	</main>
 </template>
