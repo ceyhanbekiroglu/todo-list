@@ -32,6 +32,10 @@ const addTodo = () => {
 
 }
 
+const removeTodo = todo => {
+	todos.value = todos.value.filter(t => t !== todo)
+}
+
 watch(todos, (newVal) => {
 	localStorage.setItem('todos', JSON.stringify(newVal))
 }, { deep: true })
