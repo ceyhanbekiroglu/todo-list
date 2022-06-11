@@ -21,15 +21,13 @@ const addTodo = () => {
 	if (input_content.value.trim() === '' || input_category.value === null) {
 		return
 	}
-
 	todos.value.push({
-		id: Math.random(),
 		content: input_content.value,
 		category: input_category.value,
 		done: false,
+		editable: false,
 		createdAt: new Date().getTime()
 	})
-
 }
 
 const removeTodo = todo => {
@@ -51,7 +49,7 @@ onMounted(() => {
 </script>
 
 <template>
-	<main class="class">
+	<main class="app">
 		<section class="greeting">
 			<h2 class="title">
 				Whats up, <input type="text" placeholder="Name Here" v-model="name" />
@@ -59,33 +57,32 @@ onMounted(() => {
 		</section>
 		<section class="create-todo">
 			<h3>CREATE A TODO</h3>
-			<form @submit.prevent="addTodo"></form>
-			<h4>What's on your todo list today?</h4>
-			<input type="text" placeholder="e.g make" v-model="input_content" />
+			<form @submit.prevent="addTodo">
+				<h4>What's on your todo list today?</h4>
+				<input type="text" placeholder="e.g make" v-model="input_content" />
 
-			<h4>Pick a category</h4>
-			<div class="options">
-				<label>
-					<input type="radio" name="category" id="category1" value="business" v-model="input_category" />
-					<span class="bubble business"></span>
-					<div>Business</div>
-				</label>
+				<h4>Pick a category</h4>
+				<div class="options">
+					<label>
+						<input type="radio" name="category" id="category1" value="business" v-model="input_category" />
+						<span class="bubble business"></span>
+						<div>Business</div>
+					</label>
 
-				<label>
-					<input type="radio" name="category" value="personal" v-model="input_category" />
-					<span class="bubble personal"></span>
-					<div>Personal</div>
-				</label>
-			</div>
+					<label>
+						<input type="radio" name="category" value="personal" v-model="input_category" />
+						<span class="bubble personal"></span>
+						<div>Personal</div>
+					</label>
+				</div>
 
-			<input type="submit" value="Add todo" />
+				<input type="submit" value="Add todo" />
+			</form>
 		</section>
 		<section class="todo-list">
 			<h3>TODO LIST</h3>
 			<div class="list">
 				<div v-for="todo in todos_asc" :class="`todo-item ${todo.done && 'done'}`">
-
-
 					<label>
 						<input type="checkbox" v-model="todo.done" />
 						<span :class="`bubble ${todo.category == 'business' ? 'business' : 'personal'}`"></span>
